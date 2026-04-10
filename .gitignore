@@ -1,5 +1,6 @@
 *.csv
 *.zip
+*.parquet
 
 venv/
 .venv/
