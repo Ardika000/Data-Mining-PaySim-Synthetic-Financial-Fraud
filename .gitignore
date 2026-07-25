@@ -14,6 +14,3 @@ __pycache__/
 
 /vendor
 .env
-
-# Kecualikan data agregat dashboard Phase 5 (kecil ~0,6 MB, dibutuhkan saat deploy)
-!notebooks/Phase5/data/*.csv
