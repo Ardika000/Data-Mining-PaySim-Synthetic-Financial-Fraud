@@ -1,0 +1,6 @@
+cluster,n_records,mean_amount,median_amount,mean_drain,mean_oldbal,fraud,dominant_type,pct,fraud_rate,name
+0,1143773,165196.8,134048.41,0.83,4.279882e+06,1852,CASH_IN,17.98,0.16,CASH_IN · nominal sedang
+1,993466,14054.68,10222.96,0.7,1812.58,18,PAYMENT,15.61,0.0,PAYMENT · nominal kecil
+2,1317544,332980.94,168354.51,0.0,425.86,23,CASH_OUT,20.71,0.0,CASH_OUT · nominal besar
+3,1507038,306711.28,191140.2,7.59,103949.7,686,CASH_OUT,23.69,0.05,CASH_OUT · nominal besar
+4,1400799,28940.52,9949.47,0.29,179504.45,5634,PAYMENT,22.02,0.4,PAYMENT · nominal kecil
