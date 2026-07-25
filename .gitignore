@@ -2,6 +2,10 @@
 *.zip
 *.parquet
 
+# Dokumentasi/penjelasan .md — hanya README.md di folder paling luar yang di-track
+*.md
+!/README.md
+
 venv/
 .venv/
 __pycache__/

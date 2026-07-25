@@ -1,0 +1,16 @@
+{
+  "total_tx": 6362620,
+  "fraud_count": 8213,
+  "fraud_rate": 0.129,
+  "n_clusters": 5,
+  "iqr_pct": 43.06,
+  "zscore_pct": 4.46,
+  "iso_pct": 1.0,
+  "high_conf_pct": 5.01,
+  "high_conf_count_est": 318857,
+  "auc": 0.94,
+  "top_decile_recall": 76.4,
+  "n_rules": 12,
+  "n_days": 31,
+  "anomaly_sample_n": 1200000
+}
