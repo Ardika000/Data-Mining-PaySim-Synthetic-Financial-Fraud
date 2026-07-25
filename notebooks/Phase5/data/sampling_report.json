@@ -1,0 +1,27 @@
+{
+  "sample_n": 1200000,
+  "pop_n": 6362620,
+  "sample_frac_pct": 18.86,
+  "ks": {
+    "amount": 0.0009,
+    "oldbalanceOrg": 0.0005,
+    "drain": 0.0006
+  },
+  "fraud_rate_pop": 0.1291,
+  "fraud_rate_sample": 0.1312,
+  "type_pop_pct": {
+    "CASH_OUT": 35.17,
+    "PAYMENT": 33.81,
+    "CASH_IN": 21.99,
+    "TRANSFER": 8.38,
+    "DEBIT": 0.65
+  },
+  "type_sample_pct": {
+    "CASH_OUT": 35.19,
+    "PAYMENT": 33.78,
+    "CASH_IN": 22.0,
+    "TRANSFER": 8.37,
+    "DEBIT": 0.65
+  },
+  "verdict": "Distribusi sampel \u2248 populasi (KS sangat kecil) \u2192 sampel REPRESENTATIF."
+}
