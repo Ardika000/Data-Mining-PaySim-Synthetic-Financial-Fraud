@@ -1240,8 +1240,9 @@ if DATA_READY:
                 [f"Showing {len(d):,} transactions (days {days[0]}–{days[1]}). ", html.B('Click a row'), ' to explain; type in a column filter box to search.'])
         return d.to_dict('records'), msg
 
-    @app.callback(Output('ex-explain', 'children'), Input('ex-dt', 'active_cell'), State('ex-dt', 'derived_virtual_data'))
+    @app.callback(Output('ex-explain', 'children'), Input('ex-dt', 'active_cell'), State('ex-dt', 'derived_viewport_data'))
     def cb_explain(active, vdata):
+        # derived_viewport_data = baris pada HALAMAN yang sedang tampil; active_cell['row'] indeks page-relatif.
         if not active or not vdata or active['row'] >= len(vdata):
             return explain_placeholder()
         r = vdata[active['row']]
