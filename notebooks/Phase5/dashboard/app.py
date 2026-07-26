@@ -433,7 +433,7 @@ def page_segmentation():
     rail = html.Div([
         card([html.Div(t('SEGMEN DITEMUKAN', 'SEGMENTS FOUND'), className='kpi-label'),
               html.Div(str(kpis['n_clusters']), className='seg-count'),
-              html.Div('✓ K-Means · Elbow + Silhouette', className='chip-ok', style={'marginTop': '8px'}),
+              html.Div('✓ K-Means · Elbow + Silhouette + Davies Bouldin Score', className='chip-ok', style={'marginTop': '8px'}),
               html.Div([html.Div(style={'flex': '1', 'background': c}) for c in PALETTE[:len(CLUSTER_NAME)]], className='bar-multi')]),
         html.Div(id='cl-note', className='callout'),
     ], className='rail')
@@ -1117,14 +1117,22 @@ if DATA_READY:
     # ── Segmentation ──
     @app.callback(Output('cl-scatter', 'figure'), Input('cl-colorby', 'value'), Input('cl-filter', 'value'), Input('cl-days', 'value'))
     def cb_scatter(colorby, filt, days):
-        d = scatter[(scatter.day >= days[0]) & (scatter.day <= days[1])].copy()
+        d = scatter[(scatter.day >= days[0]) & (scatter.day <= days[1])]
         if filt != 'all':
             d = d[d['cluster'] == int(filt)]
-        lbl = t('Segmen', 'Segment')
-        d[lbl] = d['cluster'].map(lambda c: f"C{c} · {CLUSTER_NAME.get(c, c)}")
-        f = px.scatter(d, x='pc1', y='pc2', color=(lbl if colorby == 'cluster' else 'type'),
-                       color_discrete_sequence=PALETTE, opacity=0.6)
-        f.update_traces(marker=dict(size=5))
+        # WebGL (Scattergl) + trace per grup -> jauh lebih ringan dari px.scatter untuk ribuan titik
+        f = go.Figure()
+        if colorby == 'cluster':
+            for i, c in enumerate(sorted(d['cluster'].unique())):
+                sub = d[d['cluster'] == c]
+                f.add_scattergl(x=sub['pc1'], y=sub['pc2'], mode='markers',
+                                name=f"C{c} · {CLUSTER_NAME.get(c, c)}",
+                                marker=dict(size=5, color=PALETTE[i % len(PALETTE)], opacity=0.6))
+        else:
+            for i, tp in enumerate(sorted(d['type'].unique())):
+                sub = d[d['type'] == tp]
+                f.add_scattergl(x=sub['pc1'], y=sub['pc2'], mode='markers', name=tp,
+                                marker=dict(size=5, color=PALETTE[i % len(PALETTE)], opacity=0.6))
         f = style_fig(f, 430)
         f.update_layout(legend=dict(title='', orientation='v', font=dict(size=10.5)), xaxis_title='', yaxis_title='')
         return f
