@@ -17,3 +17,11 @@ __pycache__/
 
 # Kecualikan data agregat dashboard Phase 5 (kecil ~0,6 MB, dibutuhkan saat deploy)
 !notebooks/Phase5/data/*.csv
+
+# Notebook eksplorasi/duplikat — tidak ditampilkan di GitHub
+# Phase 1: sembunyikan semua KECUALI 2 notebook final
+notebooks/Phase1/*
+!notebooks/Phase1/DE1_EDA_and_Data_Quality.ipynb
+!notebooks/Phase1/DE2_Preprocessing_Pipeline.ipynb
+# Phase 2:
+notebooks/Phase2/SS_clustering_2.ipynb
